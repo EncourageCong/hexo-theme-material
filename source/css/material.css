@@ -316,6 +316,10 @@ ul, ol {
   color: #fff !important
 }
 
+.mdl-color-text--white > svg {
+  fill: #fff;
+}
+
 .mdl-color-text--accent {
   color: #ff4081 !important
 }
@@ -1241,8 +1245,55 @@ input.mdl-button[type="submit"] {
   z-index: -1
 }
 
+.asider {
+  max-width: 260px;
+  width: 25%;
+  position: fixed;
+  top: 154px;
+  right: calc((100% - 1084px)/2);
+  transition: all .3s linear;
+  margin: 8px;
+}
+
+.asider.toc-fixed {
+  top: 70px;
+}
+
+.post-toc-link.active {
+  animation: shining 3s linear infinite;
+  color: #29d;
+}
+
+@keyframes shining {
+  0% {
+    text-shadow: 0 0 4px #4336ff;
+  }
+  50% {
+    text-shadow: 0 0 14px #4336ff;
+  }
+  100% {
+    text-shadow: 0 0 4px #4336ff;
+  }
+}
+
 .mdl-menu__container.is-visible {
-  z-index: 999
+  z-index: 999;
+}
+
+.mdl-menu__container.is-visible.show {
+  height: auto;
+  width: 100%;
+}
+
+
+.mdl-menu__container.is-visible.show .post-toc-wrap{
+  transition: all 800ms linear;
+  -webkit-transform: translate3d(0,0,0);
+  -moz-transform: translate3d(0,0,0);
+  -ms-transform: translate3d(0,0,0);
+  -o-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+  opacity: 1;
 }
 
 .mdl-menu__outline {
@@ -1307,7 +1358,7 @@ input.mdl-button[type="submit"] {
   padding: 8px 0;
   margin: 0;
   opacity: 0;
-  clip: rect(0 0 0 0);
+  /* clip: rect(0 0 0 0); */
   z-index: -1
 }
 
@@ -1580,6 +1631,34 @@ input.mdl-button[type="submit"] {
 
 .material-layout:not(.is-small-screen) .mdl-layout--small-screen-only {
   display: none
+}
+
+.mdl-layout {
+  width: 100%;
+  height: 100%;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mdl-layout__content {
+  -ms-flex: 0 1 auto;
+  position: relative;
+  display: inline-block;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  z-index: 1;
+  -webkit-overflow-scrolling: touch;
 }
 
 .mdl-layout__container {

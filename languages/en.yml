@@ -1,5 +1,7 @@
 sidebar:
     homepage: "Home"
+    category: "Categories"
+    tag: "Tags"
     archive: "Archives"
     article_num: "Number of articles"
 post:

@@ -5,10 +5,42 @@
     <%- jsLsload({path:('js/lazyload.min.js'),key:'lazyload_js'}) %>
 <% } %>
 
+<% if ( (is_post()) ) { %>
+<script type="text/javascript">
+    $(function() {
+        var offset_hs = [];
+        var navs = $('#toc_button a')
+        for (var i = 0; i < navs.length; i++) {
+            var $href = $($(navs[i]).attr('href')).get(0);
+            offset_hs.push($href.offsetTop - $href.offsetHeight*0.8);
+        }
+
+        window.tocOnScroll = function(scrollTop) {
+            for(var i=0; i<offset_hs.length; i++) {
+                if(scrollTop >= offset_hs[i]) {
+                    if (i+1 < offset_hs.length) {
+                        if (scrollTop >= offset_hs[i+1]) {
+                            continue;
+                        } else if (scrollTop < offset_hs[i+1]) {
+                            navs.removeClass('active')
+                            $(navs[i]).addClass('active');
+                            break;
+                        }
+                    } else {
+                        navs.removeClass('active')
+                        $(navs[i]).addClass('active');
+                    }
+                }
+            }
+        }
+    });
+</script>
+<% } %>
+
 <% if(theme.vendors.materialcdn) { %>
-    <%- jsLsload({path:(theme.vendors.materialcdn + '/js/js.min.js'),key:'js_js'}) %>
+    <%- jsLsload({path:(theme.vendors.materialcdn + '/js/js.js'),key:'js_js'}) %>
 <% } else { %>
-    <%- jsLsload({path:('js/js.min.js'),key:'js_js'}) %>
+    <%- jsLsload({path:('js/js.js'),key:'js_js'}) %>
 <% } %>
 
 <%- partial('_widget/nprogress') %>
@@ -83,7 +115,7 @@
 <script type="text/ls-javascript" id="window-load">
     $(window).on('load', function() {
         // Post_Toc parent position fixed
-        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'initial').addClass('is-visible show');
     });
 
     <% if (theme.prettify.enable) { %>
@@ -91,7 +123,7 @@
             $(function() {
                 $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
                 prettyPrint();
-                })
+            })
         <% } %>
     <% } %>
     <% if (theme.hanabi.enable) { %>

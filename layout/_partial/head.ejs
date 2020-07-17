@@ -16,6 +16,7 @@
             '1.5.2',
             '1.5.5'
         ]
+        const it = <%- JSON.stringify(site.pages) %>
     </script>
 
     <!-- dns prefetch -->
@@ -96,7 +97,7 @@
         <% } %>
 
     <% } else { %>
-        <%- cssLsload({path:('css/material.min.css'),key:'material_css'}) %>
+        <%- cssLsload({path:('css/material.css'),key:'material_css'}) %>
         <%- cssLsload({path:('css/style.min.css'),key:'style_css'}) %>
 
         <% if (theme.prettify.enable){ %>

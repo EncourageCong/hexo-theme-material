@@ -64,7 +64,7 @@ $(document).ready(function() {
 
     // Smooth scroll of TOC
     $(".post-toc a").click(function() {
-        $("html, body").animate({
+        $("#content").animate({
             scrollTop: $($(this).attr("href")).offset().top + "px"
         }, {
             duration: 500,
@@ -95,23 +95,30 @@ $(document).ready(function() {
 //**********************************   Back_to_top_js
 //**********************************
 //**********************************
+document.getElementById('content').addEventListener('scroll', function (event) {
+    var scroll = $(event.target).scrollTop();
+    if (typeof window.tocOnScroll == 'function') {
+        window.tocOnScroll(scroll);
+    }
+    if (scroll > 180) {
+        $('#right_asider').addClass('toc-fixed');
+    } else {
+        $('#right_asider').removeClass('toc-fixed');
+    }
+    if (scroll > 300) {
+        $('#back-to-top').addClass('btt-visible');
+    } else {
+        $('#back-to-top').removeClass('btt-visible');
+    }
 
-$(window).scroll(function (event) {
-    var scroll = $(window).scrollTop();
-	if (scroll > 300) {
-		$('#back-to-top').addClass('btt-visible');
-	} else {
-		$('#back-to-top').removeClass('btt-visible');
-	}
-
-	var footerOffset = $('.mdl-mini-footer').offset().top;
-	var windowHeight = $( window ).height();
-	if (scroll > footerOffset - windowHeight + 42) {
-		$('#back-to-top').addClass('btt-docked');
-	} else {
-		$('#back-to-top').removeClass('btt-docked');
-	}
-});
+    var footerOffset = $('.mdl-mini-footer').offset().top;
+    var windowHeight = $(event.target).height();
+    if (scroll > footerOffset - windowHeight) {
+        $('#back-to-top').addClass('btt-docked');
+    } else {
+        $('#back-to-top').removeClass('btt-docked');
+    }
+})
 
 //**********************************
 //**********************************

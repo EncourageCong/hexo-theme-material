@@ -1,8 +1,3 @@
-<!-- Post TOC -->
-<% if( (page.toc === true) || (is_post() && page.toc !== false) ) { %>
-    <%- partial('_partial/toc_button') %>
-<% } %>
-
 <!-- Layouts -->
 <% if(page.layout === 'tags') { %>
     <!-- Tags Cloud -->
@@ -19,9 +14,8 @@
 <% } else { %>
     <!-- Post Module -->
     <div class="material-post_container">
-
         <div class="material-post mdl-grid">
-            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--9-col">
 
                 <!-- Post Header(Thumbnail & Title) -->
                 <%- partial('_partial/post-header') %>
@@ -47,6 +41,35 @@
 
             <!-- Post Prev & Next Nav -->
             <%- partial('_partial/post-nav') %>
+        </div>
+
+        <!-- Post TOC -->
+        <div class="asider mdl-shadow--4dp" id="right_asider">
+        <% if( (page.toc === true) || (is_post() && page.toc !== false) ) { %>
+            <%- partial('_partial/toc_button') %>
+        <% } %>
+        <% if(is_post() && page.categories) { %>
+            <hr style="width: 90%;margin: 8px auto; border-color: white;"/>
+            <div class="post-toc">
+                <div style="color: #727272;">CATEGORIES</div>
+                <ul class="categories-list">
+                <% page.categories.each(function(cate) { %>
+                    <li class="categories-list-item"><a href="/<%= cate.path %>"><%= cate.name %></a></li>
+                <% }) %>
+                </ul>
+            </div>
+        <% } %>
+        <% if(is_post() && page.tags) { %>
+            <hr style="width: 90%;margin: 8px auto; border-color: white;"/>
+            <div class="post-toc">
+                <div style="color: #727272;">TAGS</div>
+                <div class="tags-list">
+                <% page.tags.each(function(tag, _index) { %>
+                <div style="background-color: <%= jsColor() %>;<% if(_index==0) {%>margin-left: 0;<%}%>"  class="tags-list-item"><a href="/<%= tag.path %>"><%= tag.name.toUpperCase() %></a></div>
+                <% }) %>
+                </div>
+            </div>
+        <% } %>
         </div>
     </div>
 <% } %>

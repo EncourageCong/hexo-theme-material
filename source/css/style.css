@@ -504,12 +504,12 @@ a {
     margin: 0 auto;
     padding: 0;
     width: 100%;
-    max-width: 900px;
+    max-width: 1100px;
     flex-shrink: 0
 }
 #scheme-Paradox .material-layout .material-layout__content {
     position: relative;
-    padding-top: 165px;
+    padding-top: 90px;
     margin: 0 auto;
     width: 100%;
 }
@@ -846,7 +846,7 @@ a {
     margin-top: 5pc;
     padding: 40px;
     height: 120px;
-    background-color: #fff;
+    background-color: #f5f5f5;
     align-items: center
 }
 @media screen and (max-width: 840px) {
@@ -1128,12 +1128,6 @@ a {
 }
 #scheme-Paradox .more {
     margin-left: 1pc
-}
-#scheme-Paradox #top {
-    width: 0;
-    height: 0;
-    position: absolute;
-    top: 0
 }
 #scheme-Paradox #search-label {
     right: 28px;
@@ -2152,15 +2146,7 @@ a {
     background-color: #f5f5f5
 }
 .sidebar {
-    width: 0;
-    -webkit-transform: translate3d(-280px, 0, 0);
-    transform: translate3d(-280px, 0, 0)
-}
-.sidebar.open {
-    min-width: 280px;
-    width: 280px;
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0)
+    width: 100%;
 }
 .sidebar-fixed-left {
     position: fixed;
@@ -2400,6 +2386,39 @@ a {
     user-select: none;
 */
 }
+.post-toc .categories-list {
+    margin: 0;
+    padding: 0;
+}
+.post-toc .categories-list .categories-list-item {
+    line-height: 22px;
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0 12px;
+    position: relative;
+}
+.post-toc .categories-list li::before {
+    background: #13505b;
+    content: '';
+    height: 14px;
+    left: 0;
+    position: absolute;
+    top: 4px;
+    width: 3px;
+}
+.post-toc .tags-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+.post-toc .tags-list .tags-list-item {
+    padding: 2px 8px;
+    margin-left: 12px;
+    margin-bottom: 8px;
+}
+.post-toc .tags-list .tags-list-item a {
+    color: #fff;
+    font-weight: bold;
+}
 /*****************/
 /* Material_icon */
 /*****************/
@@ -2427,7 +2446,7 @@ a {
 #back-to-top{
     display: block;
     position: fixed;
-    bottom: 24px;
+    bottom: 100px;
     right: -41px;
     transition: background-color .18s cubic-bezier(.6,0,.1,1),box-shadow .18s cubic-bezier(.6,0,.1,1),transform .18s cubic-bezier(.6,0,.1,1);
     z-index: 8;
